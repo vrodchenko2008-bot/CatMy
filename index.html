@@ -7,18 +7,23 @@
 <title>Сюрприз для Королеви 👑</title>
 
 <style>
-body {
+/* БАЗОВЫЕ СТИЛИ */
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, #1a052d, #000);
-    overflow: hidden;
+    background: radial-gradient(circle at top, #1a052d, #000);
     font-family: 'Comfortaa', sans-serif;
+    overflow-x: hidden;
 }
 
-/* ГІРЛЯНДА */
+/* ГИРЛЯНДА */
 .garland {
     position: absolute;
     top: 0;
@@ -26,75 +31,68 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 0;
-    margin: 0;
-    z-index: 100;
     list-style: none;
+    padding: 0.5em 0;
     background: rgba(0,0,0,0.2);
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
 }
 
 .light {
-    width: 14px;
-    height: 18px;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    position: relative;
-    top: -2px;
+    width: 16px;
+    height: 20px;
+    border-radius: 50% / 50%;
     animation: flash 1.5s infinite alternate;
+    box-shadow: 0 0 15px #fff3;
 }
 
-.light:nth-child(4n+1) { background: #ff4d6d; box-shadow: 0 0 20px #ff4d6d; animation-delay: 0s; }
-.light:nth-child(4n+2) { background: #45ffbc; box-shadow: 0 0 20px #45ffbc; animation-delay: 0.4s; }
-.light:nth-child(4n+3) { background: #ffeb3b; box-shadow: 0 0 20px #ffeb3b; animation-delay: 0.8s; }
-.light:nth-child(4n+4) { background: #00d4ff; box-shadow: 0 0 20px #00d4ff; animation-delay: 1.2s; }
+.light:nth-child(4n+1) { background: #ff4d6d; animation-delay: 0s; }
+.light:nth-child(4n+2) { background: #45ffbc; animation-delay: 0.3s; }
+.light:nth-child(4n+3) { background: #ffeb3b; animation-delay: 0.6s; }
+.light:nth-child(4n+4) { background: #00d4ff; animation-delay: 0.9s; }
 
 @keyframes flash {
-    from { opacity: 0.4; transform: scale(0.9); filter: brightness(1); }
-    to { opacity: 1; transform: scale(1.1); filter: brightness(1.8); }
+    0% { transform: scale(0.8); opacity: 0.4; filter: brightness(1); }
+    100% { transform: scale(1.2); opacity: 1; filter: brightness(1.8); }
 }
 
-/* ЛЕТЯЧІ СЕРЦЯ */
-.heart-particle {
-    position: absolute;
-    top: -20px;
-    user-select: none;
-    z-index: 1;
-    pointer-events: none;
-    animation: heartFall linear infinite;
-    color: #ff4d6d;
-}
-
-@keyframes heartFall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
-}
-
+/* КОНТЕЙНЕР */
 .container {
-    text-align: center;
-    margin-top: 40px;
     position: relative;
+    text-align: center;
     z-index: 10;
+    padding: 0 10px;
 }
 
+/* ЗАГОЛОВОК */
 .title {
     font-family: 'Pacifico', cursive;
-    font-size: 30px;
+    font-size: 4vw;
+    max-font-size: 36px;
     color: #fff;
-    margin-bottom: 25px;
-    text-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255,77,109,0.8);
+    transition: opacity 0.5s ease;
 }
 
-.box { position: relative; cursor: pointer; }
+/* КОРОБКА */
+.box {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
 
 .box-img {
     width: 250px;
-    transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 80vw;
+    transition: 1s cubic-bezier(0.4,0,0.2,1);
 }
 
 .open .box-img {
     transform: translateY(130px) scale(0.7);
     opacity: 0.2;
     filter: blur(5px);
+    transition: transform 1s, opacity 1s, filter 1s;
 }
 
 /* СЮРПРИЗ */
@@ -104,7 +102,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-    transition: 1.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 1.3s cubic-bezier(0.175,0.885,0.32,1.275), opacity 1.3s;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,56 +114,67 @@ body {
     opacity: 1;
 }
 
+/* СВЕТЯЩИЙСЯ ФОН */
 .glow-bg {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 77, 109, 0.3) 0%, transparent 70%);
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255,77,109,0.3) 0%, transparent 70%);
     z-index: -1;
-    animation: rotateGlow 5s infinite linear;
+    animation: rotateGlow 8s infinite linear;
+    border-radius: 50%;
 }
 
 @keyframes rotateGlow {
-    from { transform: rotate(0deg) scale(1); }
-    to { transform: rotate(360deg) scale(1.1); }
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.1); }
 }
 
+/* ШОКОЛАД И МЕДВЕДЬ */
 .choco {
     display: flex;
     gap: 15px;
     margin-bottom: -10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .choco img {
     width: 160px;
+    max-width: 40vw;
     animation: float 3s infinite alternate ease-in-out;
 }
 
 @keyframes float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-20px); }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
 }
 
 .bear {
     width: 180px;
+    max-width: 45vw;
     opacity: 1 !important;
-    filter: drop-shadow(0 5px 25px rgba(255, 107, 157, 0.5));
+    filter: drop-shadow(0 5px 25px rgba(255,107,157,0.5));
     z-index: 10;
+    margin: 15px 0;
 }
 
+/* СООБЩЕНИЕ */
 .message {
-    margin-top: 30px;
-    background: rgba(255, 255, 255, 0.12);
+    margin-top: 20px;
+    background: rgba(255,255,255,0.12);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 25px;
     border-radius: 30px;
     border: 1px solid rgba(255,255,255,0.3);
     color: white;
-    width: 320px;
+    width: 90%;
+    max-width: 350px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
+/* КНОПКА */
 .btn-close {
     background: linear-gradient(45deg, #ff4d6d, #ff758c);
     border: none;
@@ -176,6 +185,35 @@ body {
     font-weight: bold;
     cursor: pointer;
     margin-top: 15px;
+    transition: transform 0.3s;
+}
+.btn-close:hover {
+    transform: scale(1.1);
+}
+
+/* СЕРДЕЧКИ */
+.heart-particle {
+    position: absolute;
+    top: -20px;
+    user-select: none;
+    pointer-events: none;
+    animation: heartFall linear infinite;
+    font-size: 20px;
+    z-index: 1;
+}
+
+@keyframes heartFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 600px) {
+    .title { font-size: 6vw; margin-bottom: 15px; }
+    .box-img { width: 70vw; }
+    .choco img { width: 30vw; }
+    .bear { width: 35vw; }
+    .message { width: 95%; padding: 20px; }
 }
 </style>
 </head>
@@ -221,24 +259,23 @@ function openBox(){
     if(!box.classList.contains('open')) {
         box.classList.add("open");
         document.getElementById("title").style.opacity = "0";
-        createHearts(); // Тепер літають серця!
+        createHearts();
     }
 }
 
 function createHearts() {
     const body = document.querySelector('body');
-    const colors = ['#ff4d6d', '#ff758c', '#ff8fa3', '#ffb3c1']; // Різні відтінки рожевого
-    
+    const colors = ['#ff4d6d','#ff758c','#ff8fa3','#ffb3c1'];
+
     for (let i = 0; i < 40; i++) {
         let heart = document.createElement('div');
         heart.className = 'heart-particle';
-        heart.innerHTML = '❤'; // Символ серця
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Різна швидкість
-        heart.style.delay = (Math.random() * 2) + 's';
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random()*100+'vw';
+        heart.style.animationDuration = (Math.random()*3 + 2)+'s';
         heart.style.opacity = Math.random();
-        heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.fontSize = (Math.random()*20 + 15)+'px';
+        heart.style.color = colors[Math.floor(Math.random()*colors.length)];
         body.appendChild(heart);
     }
 }
