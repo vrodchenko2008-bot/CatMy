@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
-<title>Сюрприз для Королевы 👑</title>
+<title>Сюрприз для Королеви 👑</title>
 
 <style>
 body {
@@ -18,7 +18,7 @@ body {
     font-family: 'Comfortaa', sans-serif;
 }
 
-/* ГИРЛЯНДА */
+/* ГІРЛЯНДА */
 .garland {
     position: absolute;
     top: 0;
@@ -53,7 +53,7 @@ body {
     to { opacity: 1; transform: scale(1.1); filter: brightness(1.8); }
 }
 
-/* ЛЕТЯЩИЕ СЕРДЦА */
+/* ЛЕТЯЧІ СЕРЦЯ */
 .heart-particle {
     position: absolute;
     top: -20px;
@@ -190,7 +190,7 @@ body {
 </ul>
 
 <div class="container">
-    <div class="title" id="title">Там нечего нету... ✨</div>
+    <div class="title" id="title">Там нічого немає... ✨</div>
 
     <div class="box" id="box" onclick="openBox()">
         <img src="image_0.png" class="box-img">
@@ -206,10 +206,10 @@ body {
             <img src="image_1.png" class="bear">
 
             <div class="message">
-                <h2>Для моей Королевы 👑💖</h2>
-                <p>Пусть каждый твой день будет наполнен радостью, теплом и счастьем.<br>
-                Ты заслуживаешь только самого лучшего 💕</p>
-                <button class="btn-close" onclick="event.stopPropagation(); location.reload();">Сначала</button>
+                <h2>Для моєї Королеви 👑💖</h2>
+                <p>Нехай кожен твій день буде наповнений радістю, теплом і щастям.<br>
+                Ти заслуговуєш лише найкращого 💕</p>
+                <button class="btn-close" onclick="event.stopPropagation(); location.reload();">Спочатку</button>
             </div>
         </div>
     </div>
@@ -221,20 +221,20 @@ function openBox(){
     if(!box.classList.contains('open')) {
         box.classList.add("open");
         document.getElementById("title").style.opacity = "0";
-        createHearts(); // Теперь вылетают сердца!
+        createHearts(); // Тепер літають серця!
     }
 }
 
 function createHearts() {
     const body = document.querySelector('body');
-    const colors = ['#ff4d6d', '#ff758c', '#ff8fa3', '#ffb3c1']; // Разные оттенки розового
+    const colors = ['#ff4d6d', '#ff758c', '#ff8fa3', '#ffb3c1']; // Різні відтінки рожевого
     
     for (let i = 0; i < 40; i++) {
         let heart = document.createElement('div');
         heart.className = 'heart-particle';
-        heart.innerHTML = '❤'; // Символ сердца
+        heart.innerHTML = '❤'; // Символ серця
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Разная скорость
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Різна швидкість
         heart.style.delay = (Math.random() * 2) + 's';
         heart.style.opacity = Math.random();
         heart.style.fontSize = Math.random() * 20 + 15 + 'px';
